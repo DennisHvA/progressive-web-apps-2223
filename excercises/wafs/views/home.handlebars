@@ -1,0 +1,98 @@
+<main>
+        <section id="home">
+            <section class="hide" id="scanner">
+                <video id="video" autoplay></video>
+                <div class="line" ></div>
+                <button class="hide" id="stop">Stop</button>
+                <section id="state" class="">
+                    <div>
+                      <div></div>
+                    </div>
+                    <img id="message-img"></img>
+                    <h3 id="message-h"></h3>
+                    <p id="message-p"></p>
+                </section>
+            </section>
+            <h1>Calorie Checker</h1>
+            <section class="calc">
+                <h2>Bereken hoeveel calorieen je op een dag nodig hebt!</h2>
+                <p id="form-error"></p>
+                <form class="calc-form" id="calc-form">
+                    <section>
+                        <section>
+                            <label for="gender">Geslacht:</label>
+                            <section>
+                                <label>
+                                    <input type="radio" name="gender" value="Male" checked>
+                                    Man
+                                </label>
+                                <label>
+                                    <input type="radio" name="gender" value="Female">
+                                    Vrouw
+                                </label>
+                            </section>
+                        </section>
+        
+                        <section>
+                            <label for="distance">Leeftijd:</label>
+                            <input type="text" name="t" id="age" inputmode="numeric" pattern="[0-9]*">
+                        </section>
+                    </section>
+    
+                    <section>
+                        <section>
+                            <label for="height" class="top-label">Lengte:</label>
+                            <input type="text" name="height_cm" id="height-cm" inputmode="numeric" pattern="[0-9]*">
+                        </section>
+        
+                        <section>
+                            <label for="weight" class="top-label">Gewicht:</label>
+                            <input type="text" name="weight" id="weight" inputmode="numeric" pattern="[0-9]*">
+                        </section>
+                    </section>
+    
+                    <section>
+                        <label>Activiteit:</label>
+                        <label>
+                            <input type="radio" name="active" value="1">
+                            Geen tot weinig lichaamsbeweging
+                        </label>
+                        <label>
+                            <input type="radio" name="active" value="2">
+                            Lichte lichaamsbeweging
+                        </label>
+                        <label>
+                            <input type="radio" name="active" value="3" checked>
+                            Normale lichaamsbeweging
+                        </label>
+                        <label>
+                            <input type="radio" name="active" value="4">
+                            Zware lichaamsbeweging
+                        </label>
+                        <label>
+                            <input type="radio" name="active" value="5">
+                            Zeer zware lichaamsbeweging
+                        </label>
+                    </section>
+                        
+                    <button class="form-submit">Berekenen</button>
+                </form>
+                <p id="results"></p>
+            </section>
+            <section class="items">
+                <h2>Scan producten om te kijken hoeveel calorieen erin zitten!</h2>
+                <button id="start">Scan</button>
+                <table id="render">
+                    <tr>
+                        <td>afbeelding</td>
+                        <td>productnaam</td>
+                        <td id="cal" class="cal">kcal</td>
+                    </tr>
+                </table>
+            </section>
+        </section>
+        <section id="detail-page"></section>
+    </main>
+
+    <script src="./scripts/lib/routie.min.js"></script>
+    <script src="./scripts/index.js" type="module"></script>
