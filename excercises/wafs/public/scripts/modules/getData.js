@@ -4,7 +4,7 @@ import { errorState, succesState } from "./cameraState.js"
 
 export function getData (value) {
 
-    value = "5449000000996"
+    // value = "5449000000996"
     
     const url = `https://world.openfoodfacts.org/api/v0/product/${value}.json`
 
@@ -26,7 +26,7 @@ export function getData (value) {
     })
 }
 
-getData();
+// getData();
 
 export function getDetail (id) {
     
