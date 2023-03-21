@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
 //   res.send('Hello World!')
-    fetch(`https://world.openfoodfacts.org/api/v0/product/5449000000996.json`)
+    fetch(`https://world.openfoodfacts.org/api/v0/product/${req.params.id}.json`)
     .then(async response => {
     const data = await response.json()
 
