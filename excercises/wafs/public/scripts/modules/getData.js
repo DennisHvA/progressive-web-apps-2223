@@ -1,5 +1,6 @@
 import { renderData, renderDetail } from "./renderData.js"
 import { errorState, succesState } from "./cameraState.js"
+// import fetch from "node-fetch"
 
 export function getData (value) {
 

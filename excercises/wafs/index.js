@@ -9,9 +9,10 @@ app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', './views');
 
-app.get('/', (req, res) => {
-    res.render('home');
-});
+const indexRouter = require('./router/index');
+// const adminRouter = require('./router/admin');
+app.use('/', indexRouter);
+// app.use('/admin', adminRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
