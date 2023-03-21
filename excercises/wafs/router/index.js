@@ -4,11 +4,17 @@ const router = express.Router();
 const fetch = require('node-fetch')
 
 router.get('/', (req, res) => {
-    res.render('home')
     fetch(`https://world.openfoodfacts.org/api/v0/product/5449000000996.json`)
     .then(async response => {
-      const movieData = await response.json()
-      console.log(movieData)
+      const data = await response.json()
+
+      console.log(data)
+      res.render('home', {
+        link: data.code,
+        name: data.product.product_name,
+        image: data.product.image_front_url,
+        cal: data.product.nutriments['energy-kcal_100g']
+      })
     })
 })
 

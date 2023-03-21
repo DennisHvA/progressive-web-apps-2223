@@ -1,4 +1,4 @@
-<main>
+{{!-- <main>
         <section id="home">
             <section class="hide" id="scanner">
                 <video id="video" autoplay></video>
@@ -97,11 +97,22 @@
     {{>footer}}
 
     <script src="./scripts/lib/routie.min.js"></script>
-    <script src="./scripts/index.js" type="module"></script>
+    <script src="./scripts/index.js" type="module"></script> --}}
 
-{{!-- <h1>Posts</h1>
-{{#each id}}
-    <a href="/{{this}}"> hallo</a>
+<h1>Posts</h1>
+{{!-- {{#each data}}
+    <a href="/{{this.code}}"> hallo</a>
     {{else}}
     <p class="empty">No content</p>
 {{/each}} --}}
+<tr>
+    <td>
+        <a href="/{{link}}">
+            <img src="{{image}}">
+        </a>
+    </td>
+    <td>{{name}}</td>
+    <td>{{cal}}</td>
+</tr>
+    <a href="/{{link}}"> hallo</a>
+    <p class="empty">No content</p>
