@@ -1,10 +1,10 @@
 const express = require('express');
-const request = require('request');
 const router = express.Router();
 const fetch = require('node-fetch')
 
 router.get('/', (req, res) => {
-    fetch(`https://world.openfoodfacts.org/api/v0/product/5449000000996.json`)
+    value = '5449000000996'
+    fetch(`https://world.openfoodfacts.org/api/v0/product/${value}.json`)
     .then(async response => {
       const data = await response.json()
 
@@ -17,8 +17,7 @@ router.get('/', (req, res) => {
     })
 })
 
-router.get('/:id', (req, res) => {
-//   res.send('Hello World!')
+router.get('/details/:id', (req, res) => {
     fetch(`https://world.openfoodfacts.org/api/v0/product/${req.params.id}.json`)
     .then(async response => {
     const data = await response.json()
@@ -38,4 +37,45 @@ router.get('/:id', (req, res) => {
     })
 })
 
+router.get('/search', (req, res) => {
+  const searchPage = 1
+  const searchTerm = req.query.search || 0
+  fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${searchTerm}&search_simple=1&action=process&json=2&page=${searchPage}&page_size=10`)
+      .then(async response => {
+        const data = await response.json()
+
+          res.render('search', {
+              data: data.products,
+          });
+      })
+});
+
+router.get("/scanner", (req, res) => {
+  res.render("scanner")
+} )
+
 module.exports = router;
+
+// "https://nl.openfoodfacts.org/cgi/search.pl?search_terms=&json=true"
+// `https://world.openfoodfacts.org/cgi/search.pl?search_terms=&search_simple=1&action=process&json=1`
+// 'https://world.openfoodfacts.org/cgi/search.pl?search_terms=$%7Breq.query.search%7D&search_simple=1&action=process&json=2&page=2
+
+// router.get("/layout", async (req, res) => {
+//   const response = await fetch(
+//     `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${req.query.query}&search_simple=1&action=process&json=1`
+//   );
+//   const data = await response.json();
+//   console.log(req.query.query)
+//   res.render("layout", {
+//     query: req.query.query,
+//   });
+// });
+
+// router.get('/layout', async (req, res) => {
+//   const response = await fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${req.query.search}&search_simple=1&action=process&json=1`);
+//   const data = await response.json();
+
+//           res.render('layout', {
+//               data: data.products,
+//           });
+//       });

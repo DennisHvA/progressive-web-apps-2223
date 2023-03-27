@@ -1,0 +1,22 @@
+{{>header}}
+<main>
+    <h1>Producten</h1>
+
+        <form action="/search" method="GET">
+            <input type="text" name="search" placeholder="Zoek ..."/>
+            <input type="submit" value="Zoek" />
+        </form>
+    <section id="search">
+        {{#each data}}
+        <a href="details/{{this._id}}">
+            <section>
+                    <img src="{{this.image_url}}" alt="">
+                    <p>{{this.product_name}}</p>
+            </section>
+        </a>
+
+            {{else}}
+            <p class="empty">Foutje</p>
+        {{/each}}
+    </section>
+</main>

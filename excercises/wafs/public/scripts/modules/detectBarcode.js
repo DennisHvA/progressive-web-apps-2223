@@ -1,5 +1,3 @@
-import { getData } from "./getData.js"
-
 const video = document.querySelector('#video')
 
 let formats;
@@ -17,7 +15,7 @@ export const detectBarcode = () => {
         for (const barcode of codes)  {
         console.log(barcode.rawValue);
         const value = barcode.rawValue;
-            getData(value)
+            // getData(value)
         }
     })
     .catch(err => {

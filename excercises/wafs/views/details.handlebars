@@ -1,16 +1,20 @@
-<section id="detail-page">
-    <img src={{image}} alt={{name}}/>
-    <h1>{{name}}</h1>
-    <h2>Nutriments per 100g</h2>
-    <ul class='nutriments'>
-        <li>Calories: {{calories}}kcal</li>
-        <li>Caffeine: {{caffeine}}mg</li>
-        <li>Carbohydrates: {{carbohydrates}}g</li>
-        <li>Fat: {{fat}}g</li>
-        <li>Fibers: {{fibers}}g</li>
-        <li>Proteins: {{proteins}}g</li>
-        <li>Salts: {{salts}}g</li>
-        <li>Sugars: {{sugars}}g</li>
-    </ul>
-    <a href='/'>Terug</a>  
-</section>
+{{>header}}
+<main>
+    <section id="detail-page">
+        <img src={{image}} alt={{name}}/>
+        <h1>{{name}}</h1>
+        <h2>Nutriments per 100g</h2>
+        <ul class='nutriments'>
+            <li>Calories: {{calories}}kcal</li>
+            <li>Caffeine: {{caffeine}}mg</li>
+            <li>Carbohydrates: {{carbohydrates}}g</li>
+            <li>Fat: {{fat}}g</li>
+            <li>Fibers: {{fibers}}g</li>
+            <li>Proteins: {{proteins}}g</li>
+            <li>Salts: {{salts}}g</li>
+            <li>Sugars: {{sugars}}g</li>
+        </ul>
+        {{!-- <a href='/'>Terug</a>   --}}
+        {{!-- <a href="javascript:history.back()">Terug</a> --}}
+    </section>
+</main>
