@@ -54,6 +54,10 @@ router.get("/scanner", (req, res) => {
   res.render("scanner")
 } )
 
+router.get('/offline', (req, res) => {
+  res.render('offline');
+});
+
 module.exports = router;
 
 // "https://nl.openfoodfacts.org/cgi/search.pl?search_terms=&json=true"

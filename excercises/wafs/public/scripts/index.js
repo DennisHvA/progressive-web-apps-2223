@@ -12,3 +12,8 @@ cameraOff.addEventListener('click', disableCamera)
 
 const date = new Date().getFullYear();
 document.querySelector('time').innerHTML = date;
+
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./scripts/service-worker.js");
+}
