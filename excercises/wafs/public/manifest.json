@@ -1,0 +1,35 @@
+{
+    "short_name": "PWA",
+    "name": "Calorie Checker",
+    "icons": [
+      {
+        "src": "/images/logo.png",
+        "type": "image/png",
+        "sizes": "200x200"
+      }
+    ],
+    "id": "/?source=pwa",
+    "start_url": "/?source=pwa",
+    "background_color": "#fff",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#000",
+    "shortcuts": [
+      {
+        "name": "Search for product details",
+        "short_name": "Search",
+        "description": "Search products and see there nutriment value's",
+        "url": "/search",
+        "icons": [{ "src": "/images/logo.png", "sizes": "200x200" }]
+      }
+    ],
+    "description": "Calories and other nutriment value's",
+    "screenshots": [
+      {
+        "src": "/images/screenshot.png",
+        "type": "image/png",
+        "sizes": "750x1646",
+        "form_factor": "wide"
+      }
+    ]
+  }
