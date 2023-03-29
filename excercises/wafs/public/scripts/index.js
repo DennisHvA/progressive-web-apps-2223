@@ -14,6 +14,15 @@ const date = new Date().getFullYear();
 document.querySelector('time').innerHTML = date;
 
 
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("./scripts/service-worker.js");
-}
+// if ("serviceWorker" in navigator) {
+//   navigator.serviceWorker.register("./scripts/service-worker.js");
+// }
+
+// if ('serviceWorker' in navigator) {
+//     window.addEventListener('load', function() {
+//       navigator.serviceWorker.register('./scripts/service-worker.js')
+//         .then(function(registration) {
+//           return registration.update();
+//         })
+//     });
+//   }
