@@ -106,7 +106,7 @@ button, a {
     }
 }
 
-#scanner button {
+#scanner a {
     position: absolute;
     left: 0;
     background-color: white;

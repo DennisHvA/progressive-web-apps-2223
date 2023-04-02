@@ -39,6 +39,7 @@ router.get('/details/:id', (req, res) => {
         sugars: data.product.nutriments['sugars_100g']
     })
     })
+    .catch((status) => res.render('error', {error:status}))
 })
 
 router.get('/search', (req, res) => {
