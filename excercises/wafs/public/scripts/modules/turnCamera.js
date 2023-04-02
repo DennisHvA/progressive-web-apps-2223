@@ -4,8 +4,8 @@ import { loadingState } from "./cameraState.js";
 export function enableCamera() {
     // const main = document.querySelector("main")
     const scanner = document.querySelector("#scanner")
-    const startbutton = document.querySelector('#start')
-    const stopbutton = document.querySelector('#stop')
+    // const startbutton = document.querySelector('#start')
+    // const stopbutton = document.querySelector('#stop')
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         const constraints = { 
         video: true,
@@ -24,8 +24,8 @@ export function enableCamera() {
 
         // main.classList.toggle("fullscreen")
         scanner.classList.toggle("hide");
-        startbutton.classList.toggle("hide");
-        stopbutton.classList.toggle("hide");
+        // startbutton.classList.toggle("hide");
+        // stopbutton.classList.toggle("hide");
 
         loadingState();
     }

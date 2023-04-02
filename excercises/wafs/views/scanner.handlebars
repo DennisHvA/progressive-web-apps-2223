@@ -1,8 +1,8 @@
 <section class="hide" id="scanner">
     <video id="video" autoplay></video>
     <div class="line" ></div>
-    <a href="/" id="stop">Stop</a>
-    {{!-- <button class="hide" id="stop">Stop</button> --}}
+    {{!-- <a class="hide" id="stop" href="/">Stop</a> --}}
+    <button class="hide" id="stop">Stop</button>
     <section id="state" class="">
         <div>
             <div></div>
@@ -12,3 +12,7 @@
         <p id="message-p"></p>
     </section>
 </section>
+<form action="/zoek-barcode" method="GET">
+    <input type="text" placeholder="Voer barcode nummer hier in" class="barcode-input" name="barcode" />
+    <input type="submit" value="Zoek" />
+</form>

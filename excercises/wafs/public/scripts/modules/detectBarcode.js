@@ -17,7 +17,8 @@ export const detectBarcode = () => {
         for (const barcode of codes)  {
         console.log(barcode.rawValue);
         const value = barcode.rawValue;
-            getData(value)
+        window.location.href = "details/" + value;
+            // getData(value)
         }
     })
     .catch(err => {

@@ -2,20 +2,24 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch')
 
-router.get('/', (req, res) => {
-    value = '5449000000996'
-    fetch(`https://world.openfoodfacts.org/api/v0/product/${value}.json`)
-    .then(async response => {
-      const data = await response.json()
+// router.get('/', (req, res) => {
+//     value = '5449000000996'
+//     fetch(`https://world.openfoodfacts.org/api/v0/product/${value}.json`)
+//     .then(async response => {
+//       const data = await response.json()
 
-      res.render('home', {
-        link: data.code,
-        name: data.product.product_name,
-        image: data.product.image_front_url,
-        cal: data.product.nutriments['energy-kcal_100g']
-      })
-    })
-})
+//       res.render('home', {
+//         link: data.code,
+//         name: data.product.product_name,
+//         image: data.product.image_front_url,
+//         cal: data.product.nutriments['energy-kcal_100g']
+//       })
+//     })
+// })
+
+router.get('/', (req, res) => {
+  res.render('index');
+});
 
 router.get('/details/:id', (req, res) => {
     fetch(`https://world.openfoodfacts.org/api/v0/product/${req.params.id}.json`)
@@ -48,6 +52,12 @@ router.get('/search', (req, res) => {
               data: data.products,
           });
       })
+});
+
+router.get("/zoek-barcode", (req, res) => {
+  const barcode = req.query.barcode;
+  console.log("barcode", barcode);
+  res.redirect(`/details/${barcode}`);
 });
 
 router.get("/scanner", (req, res) => {
