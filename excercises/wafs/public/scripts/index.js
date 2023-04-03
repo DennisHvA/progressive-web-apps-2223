@@ -17,16 +17,11 @@ if (window.location.pathname === "/scanner") {
 const date = new Date().getFullYear();
 document.querySelector('time').innerHTML = date;
 
-
-// if ("serviceWorker" in navigator) {
-//   navigator.serviceWorker.register("./scripts/service-worker.js");
-// }
-
-// if ('serviceWorker' in navigator) {
-//     window.addEventListener('load', function() {
-//       navigator.serviceWorker.register('./scripts/service-worker.js')
-//         .then(function(registration) {
-//           return registration.update();
-//         })
-//     });
-//   }
+const gulp = require('gulp');
+const cleanCSS = require('gulp-clean-css');
+ 
+gulp.task('minify-css', () => {
+  return gulp.src('styles/*.css')
+    .pipe(cleanCSS({compatibility: 'ie8'}))
+    .pipe(gulp.dest('dist'));
+});

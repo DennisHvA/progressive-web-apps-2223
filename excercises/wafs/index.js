@@ -3,6 +3,9 @@ const app = express()
 const { engine } = require('express-handlebars');
 const port = 2000
 
+const compression = require('compression')
+app.use(compression())
+
 app.use(express.static('public'));
 
 app.engine('handlebars', engine());
