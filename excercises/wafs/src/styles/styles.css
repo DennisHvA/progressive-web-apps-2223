@@ -15,10 +15,6 @@
     font-display: swap;
 }
 
-/* .fullscreen {
-    overflow: hidden;
-} */
-
 .show {
     display: block;
 }
@@ -78,6 +74,7 @@ button, a {
     flex-direction: column;
     align-items: center;
 }
+
 /* ---------- */
 /* scanner */
 /* ---------- */
@@ -265,125 +262,6 @@ button, a {
   
 .scanner section {
     display: none;
-}
-
-/* ---------- */
-/* form */
-/* ---------- */
-
-.calc {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-}
-
-#form-error {
-    color: red;
-    /* display: none; */
-}
-
-#results {
-    display: none;
-}
-
-form > p {
-    display: none;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap: .5em;
-}
-
-form > section {
-    display: flex;
-    justify-content: space-between;
-}
-
-form > section:last-of-type {
-    display: flex;
-    flex-direction: column;
-}
-
-form > section > section {
-    display: flex;
-    flex-direction: column;
-}
-
-form > section > label:nth-child(1), form > section > section > label:nth-child(1){
-    font-weight: 600;
-}
-
-input[type="text"] {
-    width: 8em;
-}
-
-form > button {
-    display: block;
-    width: 5.5em;
-    background-color: black;
-    color: white;
-}
-
-#rs, .detail-page a {
-    display: block;
-    width: 2.5em;
-    background-color: black;
-    color: white;
-}
-/* ---------- */
-/* table */
-/* ---------- */
-
-.items {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-}
-
-.items section {
-    display: flex;
-    gap: 1em;
-}
-
-.items section button, .items section a {
-    background-color: black;
-    color: white;
-    padding: 1em;
-    width: 2.5em;
-}
-
-table, td, th {
-    border: 1px solid;
-}
-
-td:nth-of-type(1) {
-    width: 7em;
-}
-
-td:nth-of-type(2) {
-    width: 9em;
-}
-
-td:nth-of-type(3) {
-    width: 3em;
-}
-
-/* .cal {
-    font-weight: bold;
-    background-image: linear-gradient(#cc2b36, #cc2b36);
-    background-repeat: no-repeat;
-    background-size: 100% 0.4em;
-    background-position: 0 85%;
-} */
-
-table {
-    border-collapse: collapse;
-}
-
-table img {
-    max-width: 7em;
 }
 
 /* detail */

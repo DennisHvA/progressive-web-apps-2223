@@ -13,15 +13,15 @@
 <body>
     {{{body}}}
     {{> footer }}
-    {{!-- <script>
+    <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
-            navigator.serviceWorker.register('/service-worker.js')
+            navigator.serviceWorker.register('/service-worker-min.js')
                 .then(function(registration) {
                 return registration.update();
                 })
             });
         }
-    </script> --}}
+    </script>
 </body>
 </html>
