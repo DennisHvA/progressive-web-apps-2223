@@ -9,6 +9,12 @@
 /* default */
 /* ---------- */
 
+@font-face {
+    font-family: "Test";
+    src: url(../fonts/Montserrat-VariableFont_wght.ttf);
+    font-display: swap;
+}
+
 /* .fullscreen {
     overflow: hidden;
 } */
@@ -22,7 +28,7 @@
 }
 
 body, button {
-    font-family: "Montserrat";
+    font-family: "Test", cursive;
 }
 
 body {

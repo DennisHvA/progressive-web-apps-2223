@@ -57,7 +57,6 @@ router.get('/search', (req, res) => {
 
 router.get("/zoek-barcode", (req, res) => {
   const barcode = req.query.barcode;
-  console.log("barcode", barcode);
   res.redirect(`/details/${barcode}`);
 });
 
@@ -68,6 +67,12 @@ router.get("/scanner", (req, res) => {
 router.get('/offline', (req, res) => {
   res.render('offline');
 });
+
+router.use((req, res) => {
+  res.status(404).render('error', {
+      title: 'ERROR404',
+  })
+})
 
 module.exports = router;
 

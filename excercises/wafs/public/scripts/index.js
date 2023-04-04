@@ -16,12 +16,3 @@ if (window.location.pathname === "/scanner") {
 
 const date = new Date().getFullYear();
 document.querySelector('time').innerHTML = date;
-
-const gulp = require('gulp');
-const cleanCSS = require('gulp-clean-css');
- 
-gulp.task('minify-css', () => {
-  return gulp.src('styles/*.css')
-    .pipe(cleanCSS({compatibility: 'ie8'}))
-    .pipe(gulp.dest('dist'));
-});

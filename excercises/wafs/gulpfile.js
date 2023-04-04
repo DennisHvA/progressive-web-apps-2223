@@ -1,10 +1,17 @@
 const gulp = require('gulp');
 const cleanCSS = require('gulp-clean-css');
+const minify = require('gulp-minify');
 
-const bundleCSS = () => {
-    return gulp.src('./src/styles/styles.css')
-    .pipe(cleanCSS())
-    .pipe(gulp.dest('./public/styles'))
-}
+gulp.task('cleanCSS', () => {
+    return gulp.src('src/styles/*.css')
+      .pipe(cleanCSS())
+      .pipe(gulp.dest('./public/styles'));
+});
 
-exports.bundleCSS = bundleCSS
+gulp.task('compressSW', function() {
+    gulp.src(['./public/service-worker.js'])
+      .pipe(minify())
+      .pipe(gulp.dest('./public'))
+});
+
+gulp.task('default', gulp.series(['cleanCSS', 'compressSW']))

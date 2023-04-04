@@ -3,6 +3,13 @@ const app = express()
 const { engine } = require('express-handlebars');
 const port = 2000
 
+// app.use((req, res, next) => {
+//   // todo: set cache header to 1 year
+//   res.setHeader('Cache-Control', 'max-age=' + 365 *
+//   24 * 60 * 60);
+//   next();
+// });
+
 const compression = require('compression')
 app.use(compression())
 
