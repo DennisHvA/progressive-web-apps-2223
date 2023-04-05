@@ -1,5 +1,3 @@
-import { getData } from "./getData.js";
-
 const video = document.querySelector('#video')
 
 let formats;
@@ -18,7 +16,6 @@ export const detectBarcode = () => {
         console.log(barcode.rawValue);
         const value = barcode.rawValue;
         window.location.href = "details/" + value;
-            // getData(value)
         }
     })
     .catch(err => {
