@@ -2,8 +2,10 @@ const CORE_CACHE_NAME = 'cache-v3';
 const RUNTIME_CACHE_NAME = 'runtime-cache';
 const CORE_ASSETS = [
   '/offline',
-  './styles/styles.css',
-  '/'
+  '/styles/styles.css',
+  '/',
+  '/images/background.jpg',
+  '/fonts/Montserrat-VariableFont_wght.ttf',
 ]
 
 self.addEventListener("install", (event) => {
