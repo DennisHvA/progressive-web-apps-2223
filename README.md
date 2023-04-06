@@ -68,15 +68,38 @@ Ik heb een font gedownload en deze in CSS ingeladen. Hier zeg ik dat de content 
 
 - [Font swap](https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display/)
 
+```css
+@font-face {
+    font-family: "Test";
+    src: url(../fonts/Montserrat-VariableFont_wght.ttf);
+    font-display: swap;
+}
+```
+
 ### GZIP
 
 Ik heb een compressie gebruikt. Gzip comprimeren kan de grootte van de response body sterk verminderen en dus de snelheid van een web app verhogen.
+
+```js
+const compression = require('compression')
+app.use(compression())
+```
 
 - [GZIP](https://www.npmjs.com/package/compression/)
 
 ### Gulp
 
 Ik maak gebruik van een Gulpfile waar ik clean-css en uglify als tasks doe. Hiermee kan ik mijn public CSS en JS kleiner maken. Zo wordt de site sneller. Ik heb alle code in een andere map gezet, en de route naar waar het compressed moet worden naar de public map gedefineerd.
+
+```js
+gulp.task('cleanCSS', () => {
+    return gulp.src('src/styles/*.css')
+      .pipe(cleanCSS())
+      .pipe(gulp.dest('./public/styles'));
+});
+
+gulp.task('default', gulp.series(['cleanCSS']))
+```
 
 - [Gulp](https://gulpjs.com/)
 
