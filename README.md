@@ -3,7 +3,7 @@
 ## Table Of Contents
 
 -  About
--  Functions
+-  Features
 -  Client side
 -  Server side
 -  Activity Diagram
@@ -24,7 +24,7 @@ De gebruiker kan naar de scanner pagina gaan om de barcode te scannen. Hier word
 
 De gebruiker kan naar de zoekpagina gaan om een product te zoeken op bijvoorbeeld de naam. Als de gebruiker op de zoekpagina komt zijn er standaard 10 producten te zien. De gebruiker kan de zoekfunctie gebruiken om naar andere producten te zoeken. Als de gebruiker meer wil weten over een van de getoonde producten kan hij hierop klikken en krijgt hij een detail pagina te zien. 
 
-## Functions
+## Features
 
 | Te doen                      | Klaar? |
 | :--------------------------- | :---- |
@@ -42,13 +42,63 @@ De gebruiker kan naar de zoekpagina gaan om een product te zoeken op bijvoorbeel
 
 Ik heb vrijwel alles naar server side overgezet, behalve de camara functie. Het scannen van de barcode gebeurd client side. Als er een barcode wordt gevonden dan laad hij de bijbehorende detail pagina. Als dit niet lukt 
 
+```js
+const value = barcode.rawValue;
+window.location.href = "details/" + value;
+```
+
 ## Server side
 
-Om door de gaan op de barcode scanner, als er een barcode wordt gevonden dan laad hij de bijbehorende detail pagina. Als dit niet lukt omdat de barcode niet in de api zit, dan wordt er krijg je een error pagina.
+Om door de gaan op de barcode scanner, als er een barcode wordt gevonden dan laad hij de bijbehorende detail pagina. Als dit niet lukt omdat de barcode niet in de api zit, dan wordt er krijg je een error pagina. Als javascript is uitgeschakeld kan de gebruiker een form gebruiken om de barcode in te vullen en naar de detailpagina te gaan.
+
+```js
+router.get("/zoek-barcode", (req, res) => {
+  const barcode = req.query.barcode;
+  res.redirect(`/details/${barcode}`);
+});
+```
 
 Ook kan je naar een zoekpagina. Automatisch worden hier 10 resultaten getoond. Er wordt een fetch gedaan voor de eerste 10 resultaten in de api. De data geef ik mee aan de handlebars zoekpagina waarin ik zeg dat hij voor elk object een link moet maken waar de data uit het object in zit. Als de gebruiker de zoekbalk gebruikt wordt er gebruikt gemaakt van een search query om de api te fetchen met de search terms. Ook hier worden de eerste 10 resultaten getoond. 
 
+```js
+router.get('/search', (req, res) => {
+  const searchPage = 1
+  const searchTerm = req.query.search || 0
+  fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${searchTerm}&search_simple=1&action=process&json=2&page=${searchPage}&page_size=10`)
+      .then(async response => {
+        const data = await response.json()
+
+          res.render('search', {
+              data: data.products,
+          });
+      })
+});
+```
+
 Ook hier kan de gebruiker naar een detail pagina gaan. De zoekresultaten heb ik een link meegegeven die bestaat uit de barcode. Als de gebruiker op het resultaat/link klikt fetcht hij de waarde van de link. Hij kijkt dus in feiten of de barcode in de api zit, en dat zit hij omdat hij ook in de zoekresultaten zit. Net als de zoekpagina geef ik voor de detail pagina data mee die ik in handlebars wil gaan gebruiken.
+
+```js
+router.get('/details/:id', (req, res) => {
+    fetch(`https://world.openfoodfacts.org/api/v0/product/${req.params.id}.json`)
+    .then(async response => {
+    const data = await response.json()
+
+    res.render('details', {
+        name: data.product.product_name,
+        image: data.product.image_front_url,
+        calories: data.product.nutriments['energy-kcal_100g'],
+        caffeine: data.product.nutriments['caffeine_100g'],
+        carbohydrates: data.product.nutriments['carbohydrates_100g'],
+        fat: data.product.nutriments['fat_100g'],
+        fibers: data.product.nutriments['fiber_100g'],
+        proteins: data.product.nutriments['proteins_100g'],
+        salts: data.product.nutriments['salt_100g'],
+        sugars: data.product.nutriments['sugars_100g']
+    })
+    })
+    .catch((status) => res.render('error', {error:status}))
+})
+```
 
 ## Activity Diagram
 
@@ -59,6 +109,18 @@ Ook hier kan de gebruiker naar een detail pagina gaan. De zoekresultaten heb ik 
 Service Worker, een soort JavaScript worker die op de achtergrond van een webpagina draait en netwerkverzoeken kan onderscheppen, bronnen kan cachen en offline functionaliteit kan bieden.
 
 In de serverworker doe ik meerdere dingen. Ik geef aan welke pagina's ik standaard wil opslaan in mijn cache en ik cache bestanden waar ik op de site ben geweest. Zoals api data. Ik cache standaard de home pagina, de offline pagina en styles. Hiermee geef ik de gebruiker feedback dat de site niet gereikbaar is door zijn internet. Ook doe ik de homepagina omdat deze niet in eerste instantie wordt opgeslagen als je naar een andere pagina gaat. En natuurlijk cache ik de styling. 
+
+```js
+const CORE_CACHE_NAME = 'cache-v3';
+const RUNTIME_CACHE_NAME = 'runtime-cache';
+const CORE_ASSETS = [
+  '/offline',
+  '/styles/styles.css',
+  '/',
+  '/images/background.jpg',
+  '/fonts/Montserrat-VariableFont_wght.ttf',
+]
+```
 
 ## Critical render path
 
