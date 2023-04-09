@@ -3,8 +3,9 @@ const RUNTIME_CACHE_NAME = 'runtime-cache';
 const CORE_ASSETS = [
   '/offline',
   '/styles/styles.css',
+  '/scripts/index.js',
   '/',
-  '/images/background.jpg',
+  '/images/background.webp',
   '/fonts/Montserrat-VariableFont_wght.ttf',
 ]
 
@@ -15,6 +16,7 @@ self.addEventListener("install", (event) => {
       .then(() => self.skipWaiting())
   );
 });
+
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(

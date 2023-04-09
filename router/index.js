@@ -28,9 +28,9 @@ router.get('/details/:id', (req, res) => {
 })
 
 router.get('/search', (req, res) => {
-  const searchPage = 1
   const searchTerm = req.query.search || 0
-  fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${searchTerm}&search_simple=1&action=process&json=2&page=${searchPage}&page_size=10`)
+  const searchResults = 12
+  fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${searchTerm}&search_simple=1&action=process&json=2&page=1&page_size=${searchResults}`)
       .then(async response => {
         const data = await response.json()
 

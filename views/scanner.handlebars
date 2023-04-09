@@ -1,18 +1,14 @@
 {{>header}}
-<section class="hide" id="scanner">
-    <video id="video" autoplay></video>
-    <div class="line" ></div>
-    <a class="hide" id="stop" href="/">Stop</a>
-    <section id="state" class="">
-        <div>
-            <div></div>
-        </div>
-        <img id="message-img"></img>
-        <h3 id="message-h"></h3>
-        <p id="message-p"></p>
+<main class="scanner">
+    <section id="scanner">
+        <video id="video" autoplay></video>
+        <div></div>
+        <a href="/">Stop</a>
     </section>
-</section>
-<form action="/zoek-barcode" method="GET">
-    <input type="text" placeholder="Voer barcode nummer hier in" class="barcode-input" name="barcode" />
-    <input type="submit" value="Zoek" />
-</form>
+
+    <h1>Zet je camera aan en herlaad de pagina of typ de barcode</h1>
+    <form action="/zoek-barcode" method="GET">
+        <input type="search" inputmode="numeric" placeholder="Voer barcode nummer in" minlength="12" maxlength="13" name="barcode" required/>
+        <input type="submit" value="Zoek"/>
+    </form>
+</main>

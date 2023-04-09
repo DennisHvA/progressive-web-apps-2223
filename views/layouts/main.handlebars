@@ -1,27 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test</title>
+    <title>PWA FoodAPI</title>
+    <link rel="icon" type="image/png" href="./images/logo.ico" />
     <base href="/">
     <link rel="stylesheet" href="./styles/styles.css">
     <script src="./scripts/index.js" type="module"></script>
     <link rel="manifest" crossorigin="use-credentials" href="./manifest.json"/>
+    <meta
+        name="description"
+        content="Progressive Web App using a food API where products nutriment value's are displayed. A product can be scanned using the barcode scanner or by using the search bar to het a detail page with product information."
+    >
 </head>
 <body>
     {{{body}}}
     {{> footer }}
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-            navigator.serviceWorker.register('/service-worker.js')
-                .then(function(registration) {
-                return registration.update();
-                })
-            });
-        }
-    </script>
 </body>
 </html>

@@ -1,10 +1,1 @@
-console.log("linked")
-
-import { enableCamera } from "./modules/turnCamera.js";
-
-if (window.location.pathname === "/scanner") {
-    enableCamera();
-}
-
-const date = new Date().getFullYear();
-document.querySelector('time').innerHTML = date;
+function enableCamera(){navigator.mediaDevices&&navigator.mediaDevices.getUserMedia&&(navigator.mediaDevices.getUserMedia({audio:!1,video:{facingMode:"environment"}}).then(e=>video.srcObject=e).catch(e=>{console.log("error"),document.querySelector("#scanner").style.display="none"}),setInterval(detectBarcode,3e3))}console.log("linked");const detectBarcode=()=>{var e=document.querySelector("#video");new BarcodeDetector({formats:void 0}).detect(e).then(e=>{if(0!==e.length)for(const r of e){console.log(r.rawValue);var o=r.rawValue;window.location.href="details/"+o}}).catch(e=>{console.error(e)})},date=("serviceWorker"in navigator&&window.addEventListener("load",function(){navigator.serviceWorker.register("../service-worker.js").then(function(e){return e.update()})}),"/scanner"===window.location.pathname&&enableCamera(),(new Date).getFullYear());document.querySelector("time").innerHTML=date;

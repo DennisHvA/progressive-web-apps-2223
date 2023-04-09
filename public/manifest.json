@@ -1,11 +1,21 @@
 {
     "short_name": "PWA",
-    "name": "Calorie Checker",
+    "name": "PWA FoodAPI",
     "icons": [
       {
         "src": "/images/logo.png",
         "type": "image/png",
-        "sizes": "200x200"
+        "sizes": "201x201"
+      },
+      {
+        "src": "/images/background.jpg",
+        "type": "image/jpg",
+        "sizes": "1400x1400"
+      },
+      {
+        "src": "/images/image.svg",
+        "type": "image/svg+xml",
+        "sizes": "508x508"
       }
     ],
     "id": "/?source=pwa",
@@ -13,22 +23,35 @@
     "background_color": "#fff",
     "display": "standalone",
     "scope": "/",
-    "theme_color": "#000",
+    "theme_color": "#7ac144",
     "shortcuts": [
+      {
+        "name": "Scan for product details",
+        "short_name": "Scan",
+        "description": "Scan products and see there nutriment value's",
+        "url": "/scanner",
+        "icons": [{ "src": "/images/logo.png", "sizes": "201x201" }]
+      },
       {
         "name": "Search for product details",
         "short_name": "Search",
         "description": "Search products and see there nutriment value's",
         "url": "/search",
-        "icons": [{ "src": "/images/logo.png", "sizes": "200x200" }]
+        "icons": [{ "src": "/images/logo.png", "sizes": "201x201" }]
       }
     ],
-    "description": "Calories and other nutriment value's",
+    "description": "Scan and search products and see there nutriment value's",
     "screenshots": [
       {
-        "src": "/images/screenshot.png",
+        "src": "/images/home-d.png",
         "type": "image/png",
-        "sizes": "750x1646",
+        "sizes": "2880x1462",
+        "form_factor": "wide"
+      },
+      {
+        "src": "/images/home-m.png",
+        "type": "image/png",
+        "sizes": "562x999",
         "form_factor": "wide"
       }
     ]

@@ -1,10 +1,12 @@
 {{>header}}
-<main>
-    <section id="detail-page">
-        <img src={{image}} alt={{name}}/>
+<main class="details">
+    <section>
+        <section>
+            <img src={{image}} alt={{name}}/>
+        </section>
         <h1>{{name}}</h1>
         <h2>Nutriments per 100g</h2>
-        <ul class='nutriments'>
+        <ul>
             <li>Calories: {{calories}}kcal</li>
             <li>Caffeine: {{caffeine}}mg</li>
             <li>Carbohydrates: {{carbohydrates}}g</li>
@@ -14,7 +16,5 @@
             <li>Salts: {{salts}}g</li>
             <li>Sugars: {{sugars}}g</li>
         </ul>
-        {{!-- <a href='/'>Terug</a>   --}}
-        {{!-- <a href="javascript:history.back()">Terug</a> --}}
     </section>
 </main>

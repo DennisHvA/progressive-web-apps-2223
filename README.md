@@ -2,6 +2,7 @@
 
 ## Table Of Contents
 
+-  Assignment
 -  About
 -  Features
 -  Client side
@@ -10,7 +11,11 @@
 -  Service worker
 -  Critical render path
 
-## About
+## Assignment
+
+Zet de [client side webapplicatie](https://github.com/DennisHvA/web-app-from-scratch-2223) om in een server side rendered applicatie. Voeg ook functionaliteiten toe op basis van de Service Worker en maak van de applicatie een Progressive Web App. Ten slotte implementeer een reeks optimalisaties om de prestaties van de applicatie te verbeteren.
+
+## App
 
 In deze applicatie kan je zoeken naar de voedingswaarde van een product.
 
@@ -18,11 +23,11 @@ De gebruiker kan op 2 manieren producten zoeken en hier de waardes van zien:
 
 - Barcode scanner
 
-De gebruiker kan naar de scanner pagina gaan om de barcode te scannen. Hier wordt client side de camera aangezet en de barcode gelezen. Als de barcode is gelezen fetcht hij de barcode uit de api en krijg je een detail pagina te zien.
+De gebruiker kan naar de scanner pagina gaan om de barcode te scannen. Hier wordt de camera aangezet en de barcode gelezen. Als de barcode is gelezen kijkt hij of de de barcode in de api zit en krijg je een detail pagina te zien.
 
 - Zoekpagina 
 
-De gebruiker kan naar de zoekpagina gaan om een product te zoeken op bijvoorbeeld de naam. Als de gebruiker op de zoekpagina komt zijn er standaard 10 producten te zien. De gebruiker kan de zoekfunctie gebruiken om naar andere producten te zoeken. Als de gebruiker meer wil weten over een van de getoonde producten kan hij hierop klikken en krijgt hij een detail pagina te zien. 
+De gebruiker kan naar de zoekpagina gaan om een product te zoeken op bijvoorbeeld de naam. Als de gebruiker op de zoekpagina komt zijn er standaard 12 producten te zien. De gebruiker kan de zoekfunctie gebruiken om naar andere producten te zoeken. Als de gebruiker meer wil weten over een van de getoonde producten kan hij hierop klikken en krijgt hij een detail pagina te zien. 
 
 ## Features
 
@@ -30,17 +35,24 @@ De gebruiker kan naar de zoekpagina gaan om een product te zoeken op bijvoorbeel
 | :--------------------------- | :---- |
 | Expres routes                | ✅    |
 | Search page                  | ✅    |
-| Minimize client side scanner | ✅    |
+| Deatil page                  | ✅    |
+| Client/server side scanner   | ✅    |
 | Manifest                     | ✅    |
+| Installable                  | ✅    |
 | Caching                      | ✅    |
+| Runtime cache                | ✅    |
 | Errror/Offline page          | ✅    |
-| Enhancements                 | ✅    |
-| Update cache                 |       |
-| Styling                      |       |
+| Compression                  | ✅    |
+| Font rendering controls      | ✅    |
+| Minify CSS & JS              | ✅    |
+| Cache header                 | ✅    |
+| Deploy app                   | ✅    |
+| Pagination                   |       |
+| Recent/favorites             |       |
 
 ## Client side
 
-Ik heb vrijwel alles naar server side overgezet, behalve de camara functie. Het scannen van de barcode gebeurd client side. Als er een barcode wordt gevonden dan laad hij de bijbehorende detail pagina. Als dit niet lukt 
+Ik heb vrijwel alles naar server side overgezet, behalve de camara functie. Het scannen van de barcode gebeurd client side. Als er een barcode wordt gevonden dan laad hij de bijbehorende detail pagina. Als dit niet lukt laat hij een error pagina zien.
 
 ```js
 const value = barcode.rawValue;
@@ -49,7 +61,7 @@ window.location.href = "details/" + value;
 
 ## Server side
 
-Om door de gaan op de barcode scanner, als er een barcode wordt gevonden dan laad hij de bijbehorende detail pagina. Als dit niet lukt omdat de barcode niet in de api zit, dan wordt er krijg je een error pagina. Als javascript is uitgeschakeld kan de gebruiker een form gebruiken om de barcode in te vullen en naar de detailpagina te gaan.
+Om door te gaan op de barcode scanner, als er een barcode wordt gevonden dan laad hij de bijbehorende detail pagina. Als dit niet lukt omdat de barcode niet in de api zit, dan wordt er krijg je een error pagina. Als javascript is uitgeschakeld kan de gebruiker een form gebruiken om de barcode in te vullen en naar de detailpagina te gaan.
 
 ```js
 router.get("/zoek-barcode", (req, res) => {
@@ -58,7 +70,7 @@ router.get("/zoek-barcode", (req, res) => {
 });
 ```
 
-Ook kan je naar een zoekpagina. Automatisch worden hier 10 resultaten getoond. Er wordt een fetch gedaan voor de eerste 10 resultaten in de api. De data geef ik mee aan de handlebars zoekpagina waarin ik zeg dat hij voor elk object een link moet maken waar de data uit het object in zit. Als de gebruiker de zoekbalk gebruikt wordt er gebruikt gemaakt van een search query om de api te fetchen met de search terms. Ook hier worden de eerste 10 resultaten getoond. 
+Ook kan je naar een zoekpagina. Automatisch worden hier 12 resultaten getoond. Er wordt een fetch gedaan voor de eerste 12 resultaten in de api. De data geef ik mee aan de handlebars zoekpagina waarin ik zeg dat hij voor elk object een link moet maken waar de data uit het object in zit. Als de gebruiker de zoekbalk gebruikt wordt er gebruikt gemaakt van een search query om de api te fetchen met de search terms. Ook hier worden de eerste 12 resultaten getoond. 
 
 ```js
 router.get('/search', (req, res) => {
@@ -108,7 +120,7 @@ router.get('/details/:id', (req, res) => {
 
 Service Worker, een soort JavaScript worker die op de achtergrond van een webpagina draait en netwerkverzoeken kan onderscheppen, bronnen kan cachen en offline functionaliteit kan bieden.
 
-In de serverworker doe ik meerdere dingen. Ik geef aan welke pagina's ik standaard wil opslaan in mijn cache en ik cache bestanden waar ik op de site ben geweest. Zoals api data. Ik cache standaard de home pagina, de offline pagina en styles. Hiermee geef ik de gebruiker feedback dat de site niet gereikbaar is door zijn internet. Ook doe ik de homepagina omdat deze niet in eerste instantie wordt opgeslagen als je naar een andere pagina gaat. En natuurlijk cache ik de styling. 
+In de serverworker doe ik meerdere dingen. Ik geef aan welke pagina's hij standaard moet opslaan in mijn cache en hij cached bestanden waar je op de site bent geweest. Zoals api data. Hij cached standaard de home pagina, de offline pagina en styles. Hiermee geef ik de gebruiker feedback dat de site niet bereikbaar is door zijn internet. Ook doe ik de homepagina omdat deze niet in eerste instantie wordt opgeslagen als je naar een andere pagina gaat. En natuurlijk cache ik de styling. 
 
 ```js
 const CORE_CACHE_NAME = 'cache-v3';
@@ -124,6 +136,10 @@ const CORE_ASSETS = [
 
 ## Critical render path
 
+### Before
+
+<img width="427" alt="Scherm­afbeelding 2023-04-09 om 19 34 19" src="https://user-images.githubusercontent.com/94405795/230787738-b78b5bc6-c032-45c7-b54b-e59f5dffa285.png">
+
 ### Font swap
 
 Ik heb een font gedownload en deze in CSS ingeladen. Hier zeg ik dat de content nog steeds geladen wordt als het font niet aanwezig is. Zo krijg je soms heel even een alternatief font te zien, maar dit zorgt er wel voor dat je niet hoeft te wachten tot je tekst ziet.
@@ -132,7 +148,7 @@ Ik heb een font gedownload en deze in CSS ingeladen. Hier zeg ik dat de content 
 
 ```css
 @font-face {
-    font-family: "Test";
+    font-family: "Montserrat-FF";
     src: url(../fonts/Montserrat-VariableFont_wght.ttf);
     font-display: swap;
 }
@@ -163,25 +179,51 @@ gulp.task('cleanCSS', () => {
 gulp.task('default', gulp.series(['cleanCSS']))
 ```
 
+### Cache Header
+
+Ik heb in mijn app een cache header gebruikt zodat de cache na x aantal tijd weggaat. Dit doe ik omdat de API steeds kan veranderen en kan worden aangevuld. Anders blijft de cache voor altijd in je browser en wordt het niet geupdate. Ik heb de header op 7 dagen gezet, omdat ik denk dat dit een goede tijd is. Zo je bewaard hij een tijdje je cache en is het redelijk up tot date
+
+```js
+app.use((req, res, next) => {
+  res.setHeader('Cache-Control', 'max-age=' + 7 * 24 * 60 * 60);
+  next();
+});
+```
+
 - [Gulp](https://gulpjs.com/)
 
-## Conclusie
+### Revisioning
 
-<img width="518" alt="Scherm­afbeelding 2023-04-06 om 01 38 30" src="https://user-images.githubusercontent.com/94405795/230236576-009f3d91-9461-43b9-be50-5c48bc4250de.png">
+Verder heb ik nog kritisch naar mijn code gekeken om te kijken hoe ik dit kon verbeteren. Ik heb geprobeerd om alle kopjes aan te pakken. 
 
-Het is erg lastig om grote veranderingen aan te brengen. Elke keer als je een scan uitvoert krijg je een ander resultaat. Naar mijn idee komt dit vooral doordat de api erg traag is. Maar dingen zoals styles, fonts, javascript gaat hij nu beter mee om!
+- Alle elementen hebben de juiste tags
+- Zo min mogelijk div's, id's en classes te gebruiken 
+- Meer CSS structuur en juiste selectoren
+- Afbeeldingen hebben altteksten, een fallback image, hebben zoveel mogelijk een webbestandsnaam, zijn gecomprimeerd en hebben "lazy" loading
+- Er zijn states toegevoegd en CSS states
+- Overbodige, uitgecommente en console.logs zoveel mogelijk weggehaald
+- De App heeft meer informatie meegekregen zoals een description. 
+
+### Conclusion
+
+### After
+
+<img width="432" alt="Scherm­afbeelding 2023-04-09 om 19 35 16" src="https://user-images.githubusercontent.com/94405795/230787741-3ac7b25b-0f46-4228-9194-09511bf996a5.png">
+
+Er zijn aardig wat resultaten aanwezig. Om een optimale performance te behalen wordt dit erg lastig omdat de API best traag is. Buiten dit is er niet veel wat gedaan zou kunnen worden om de performance te verbeteren en wat een groot effect zal hebben. 
 
 ## Deployment
-Om mijn site maak ik gebruik van render.com. Ik heb hiervoor gekozen omdat dit mij een makkelijke manier van deployen leek. Als je code naar Github pushed gaat hij overnieuw deployen.
 
-[https://test-5nr9.onrender.com](https://test-5nr9.onrender.com)
+Om mijn site maak ik gebruik van cyclic. Ik heb hiervoor gekozen omdat dit mij een makkelijke manier van deployen leek. Als je code naar Github pushed gaat hij overnieuw deployen.
+
+[https://pwa-foodapi.cyclic.app](https://pwa-foodapi.cyclic.app)
 
 ## Installation
 
 Installeer deze repository: 
 
 ```
-Git clone https://github.com/dennishva/browser-technologies-2223
+Git clone https://github.com/dennishva/progressive-web-apps-2223
 ```
 
 Om Node modules te installeren:
@@ -196,8 +238,19 @@ Om de applicatie te starten:
 npm start
 ```
 
+Om gebruik te maken van automatische updates tijdens development:
+
+```
+npm dev
+```
+
 Om client side veranderingen naar je public map te sturen:
 
 ```
 gulp
 ```
+
+
+## License
+
+De [MIT](https://github.com/DennisHvA/progressive-web-apps-2223/blob/main/LICENSE) licentie wordt gebruikt

@@ -14,4 +14,10 @@ gulp.task('compressSW', function() {
     .pipe(gulp.dest('./public/'))
 });
 
-gulp.task('default', gulp.series(['cleanCSS', 'compressSW']))
+gulp.task('compressJS', function() {
+  return gulp.src('src/scripts/index.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('./public/scripts'))
+});
+
+gulp.task('default', gulp.series(['cleanCSS', 'compressSW', 'compressJS']))
